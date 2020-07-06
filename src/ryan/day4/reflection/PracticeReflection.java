@@ -3,7 +3,9 @@ package ryan.day4.reflection;
 import ryan.day2.*;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 public class PracticeReflection {
     public static void main(String[] args) {
@@ -33,5 +35,20 @@ public class PracticeReflection {
         }catch (Exception e){
             System.out.printf("get a exception: %s\n", e);
         }
+
+        InvocationHandler handler = new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                System.out.println(method);
+                if(method.getName().equals("hello")){
+                    System.out.println("PracticeInvocation hello " + args[0]);
+                }
+                return null;
+            }
+        };
+
+        PracticeInvocation invocation = (PracticeInvocation) Proxy.newProxyInstance(PracticeInvocation.class.getClassLoader(),
+                new Class[]{PracticeInvocation.class}, handler);
+        invocation.hello(new String("a"));
     }
 }
