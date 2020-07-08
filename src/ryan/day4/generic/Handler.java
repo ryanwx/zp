@@ -23,5 +23,20 @@ public class Handler {
             default:
                 System.out.println("leopard speed equals cheetah");
         }
+
+        Pair<Integer> p = new Pair<>(123, 456);
+
+        p.setFirst(p.getFirst() + 100);
+        p.setLast(p.getLast() + 100);
+        int n = add(p);
+        System.out.println(n);
+
+
+    }
+
+    public static int add(Pair<? extends Number> p){
+        Number first = p.getFirst();
+        Number last = p.getLast();
+        return first.intValue() + last.intValue();
     }
 }
