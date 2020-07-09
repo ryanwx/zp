@@ -5,7 +5,7 @@ public class Sequence {
 
     private static int sequence = 123456;
 
-    static void autoIncrement(){
+    public static void autoIncrement(){
         sequence += incrementNum;
     }
 
@@ -14,6 +14,11 @@ public class Sequence {
     }
 
     public int getSequence() {
+        return sequence;
+    }
+
+    public int getNextSequence(){
+        Sequence.autoIncrement();
         return sequence;
     }
 }
