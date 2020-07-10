@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class Handler {
     public static void main(String[] args) throws Exception {
-        String f = "D:\\Users\\ryan.zhu\\project\\java\\zp\\zp\\src\\ryan\\day6\\properties\\dev-config.properties";
+        String f = "src\\ryan\\day6\\properties\\dev-config.properties";
         Properties properties = new Properties();
         properties.load(new FileInputStream(f));
         String key = "db.name";

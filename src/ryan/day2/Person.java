@@ -1,7 +1,9 @@
 package ryan.day2;
 
+import java.io.Serializable;
+
 // 继承了一个抽象类，同时继承了抽象类定义的 leg 属性，也必须实现抽象类定义的抽象方法 run.
-public class Person extends RunAble {
+public class Person extends RunAble implements Serializable {
     protected PersonEyes eyes;
 
     protected Heart heart;
@@ -19,6 +21,19 @@ public class Person extends RunAble {
         this.leg = leg;
         Sequence.autoIncrement();       // 将静态的 sequence 值 + 1，每次实例对象都自增1，确保每个人的 id 是不一样的。
         this.idCard = sequence.getSequence();
+    }
+
+    @Override
+    public boolean equals(Object anObject) {
+        if (this == anObject){
+            return true;
+        }
+
+        if (anObject instanceof Person){
+            Person anPerson = ((Person) anObject);
+            return this.idCard == anPerson.getIdCard() && this.eyes.equals(anPerson.getEyes()) && this.heart.equals(anPerson.getHeart());
+        }
+        return false;
     }
 
     // 必须实现抽象类定义的抽象方法 run。
